@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import path from 'src/constants/path'
+import useAuthenticated from 'src/hooks/useAuthenticated'
 import usePopover from 'src/hooks/usePopover'
 import useQuery from 'src/hooks/useQuery'
 import { formatMoney } from 'src/utils/helper'
@@ -14,7 +15,7 @@ export default function Header() {
   const query = useQuery()
   const history = useHistory()
   const purchases = useSelector(state => state.cart.purchases)
-
+  const authenticated = useAuthenticated()
   useEffect(() => {
     const { name = '' } = query
     setSearchValue(name)
@@ -89,30 +90,39 @@ export default function Header() {
                 )}
               </S.CartIcon>
               <Popover active={activePopover}>
-                <S.PopoverContent>
-                  <S.PopoverTitle>Sản phẩm mới thêm</S.PopoverTitle>
-                  {purchases.slice(0, 5).map(purchase => (
-                    <S.MiniProductCart key={purchase._id}>
-                      <S.MiniProductCartImg src={purchase.product.image} />
-                      <S.MiniProductCartTitle>
-                        {purchase.product.name}
-                      </S.MiniProductCartTitle>
-                      <S.MiniProductCartPrice>
-                        ₫{formatMoney(purchase.product.price)}
-                      </S.MiniProductCartPrice>
-                    </S.MiniProductCart>
-                  ))}
-                  <S.PopoverFooter>
-                    <S.MoreProduct>
-                      {purchases.length > 5 && (
-                        <span>{purchases.length - 5} sản phẩm vào giỏ</span>
-                      )}
-                    </S.MoreProduct>
-                    <S.ButtonShowCart to={path.cart}>
-                      xem giỏ hàng
-                    </S.ButtonShowCart>
-                  </S.PopoverFooter>
-                </S.PopoverContent>
+                {!authenticated || purchases.length === 0 ? (
+                  <S.NoThingContainer>
+                    <S.NotificationWrap>
+                      <S.NotificationImg />
+                      <S.NotLogin>Chưa có sản phẩm</S.NotLogin>
+                    </S.NotificationWrap>
+                  </S.NoThingContainer>
+                ) : (
+                  <S.PopoverContent>
+                    <S.PopoverTitle>Sản phẩm mới thêm</S.PopoverTitle>
+                    {purchases.slice(0, 5).map(purchase => (
+                      <S.MiniProductCart key={purchase._id}>
+                        <S.MiniProductCartImg src={purchase.product.image} />
+                        <S.MiniProductCartTitle>
+                          {purchase.product.name}
+                        </S.MiniProductCartTitle>
+                        <S.MiniProductCartPrice>
+                          ₫{formatMoney(purchase.product.price)}
+                        </S.MiniProductCartPrice>
+                      </S.MiniProductCart>
+                    ))}
+                    <S.PopoverFooter>
+                      <S.MoreProduct>
+                        {purchases.length > 5 && (
+                          <span>{purchases.length - 5} sản phẩm vào giỏ</span>
+                        )}
+                      </S.MoreProduct>
+                      <S.ButtonShowCart to={path.cart}>
+                        xem giỏ hàng
+                      </S.ButtonShowCart>
+                    </S.PopoverFooter>
+                  </S.PopoverContent>
+                )}
               </Popover>
             </S.CartContainer>
           </S.Cart>

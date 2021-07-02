@@ -79,6 +79,30 @@ export const CartNumberBadge = styled.div`
   top: 2px;
   right: 2px;
 `
+export const NoThingContainer = styled.div`
+  box-shadow: 0 1px 3.125rem 0 rgb(0 0 0 / 20%);
+  border-radius: 0.125rem;
+  overflow: hidden;
+  background-color: #fff;
+  width: 35rem;
+`
+export const NotificationWrap = styled.div`
+  text-align: center;
+  padding: 3.75rem 0;
+`
+export const NotificationImg = styled.div`
+  background-position: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 6.25rem;
+  height: 6.25rem;
+  background-image: url('https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/9bdd8040b334d31946f49e36beaf32db.png');
+`
+export const NotLogin = styled.div`
+  margin-top: 1.25rem;
+  text-transform: capitalize;
+`
 export const PopoverContent = styled.div`
   box-shadow: 0 1px 3.125rem 0 rgb(0 0 0 /20%);
   border-radius: 0.125rem;

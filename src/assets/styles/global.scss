@@ -3,6 +3,14 @@
   src: url('../fonts/Inter-VariableFont_slnt\,wght.ttf');
   font-weight: 100 900;
 }
+:root {
+  --nc-primary: #ee4d2d;
+  --nc-secondary-blue: #0046ab;
+  --nc-secondary-yellow: #eda500;
+  --nc-secondary-green: #26aa99;
+  --nc-error: #ee2c4a;
+  --nc-error-bg: #fff4f4;
+}
 html {
   font-size: 10px;
 }
