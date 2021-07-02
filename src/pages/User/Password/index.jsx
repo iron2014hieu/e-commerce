@@ -51,10 +51,12 @@ export default function Password() {
   }
   return (
     <S.Profile>
-      <S.ProfileHeader>Đổi mật khẩu</S.ProfileHeader>
-      <S.ProfileHeaderSubTitle>
-        Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác
-      </S.ProfileHeaderSubTitle>
+      <S.ProfileHeader>
+        <S.ProfileHeaderTitle>Đổi mật khẩu</S.ProfileHeaderTitle>
+        <S.ProfileHeaderSubTitle>
+          Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác
+        </S.ProfileHeaderSubTitle>
+      </S.ProfileHeader>
       <PasswordContent onSubmit={handleSubmit(updatePassword)} noValidate>
         <S.InputLabel>
           <S.InputLabelTitle>Mật khẩu</S.InputLabelTitle>
